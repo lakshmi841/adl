@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="registration-form" action="/register" method="post">
+    <div>
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" name="first-name">
+    </div>
+    <div>
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="last-name" name="last-name">
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+    </div>
+    <div>
+      <label for="mobile-number">Mobile Number:</label>
+      <input type="tel" id="mobile-number" name="mobile-number">
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address">
+    </div>
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    // Get form fields by their ids
+    const firstNameInput = document.getElementById('first-name');
+    const lastNameInput = document.getElementById('last-name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const mobileNumberInput = document.getElementById('mobile-number');
+    const addressInput = document.getElementById('address');
+
+    // Validate form fields on form submit
+    function validateForm(event) {
+      let isValid = true;
+
+      // Validate first name
+      const firstName = firstNameInput.value.trim();
+      if (!firstName.match(/^[A-Za-z]{6,}$/)) {
+        alert('First name should contain alphabets and be at least 6 characters long.');
+        isValid = false;
+      }
+
+      // Validate last name
+      const lastName = lastNameInput.value.trim();
+      if (lastName === '') {
+        alert('Last name should not be empty.');
+        isValid = false;
+      }
+
+      // Validate email
+      const email = emailInput.value.trim();
+      if (!email.match(/^\S+@\S+\.\S+$/)) {
+        alert('Please enter a valid email address.');
+        isValid = false;
+      }
+
+      // Validate password
+      const password = passwordInput.value.trim();
+      if (password.length < 6) {
+        alert('Password should be at least 6 characters long.');
+        isValid = false;
+      }
+
+      // Validate mobile number
+      const mobileNumber = mobileNumberInput.value.trim();
+      if (!mobileNumber.match(/^\d{10}$/)) {
+        alert('Please enter a 10-digit mobile number.');
+        isValid = false;
+      }
+
+      // Validate address
+      const address = addressInput.value.trim();
+      if (address === '') {
+        alert('Address should not be empty.');
+        isValid = false;
+      }
+
+      // Prevent form submission if any field is invalid
+      if (!isValid) {
+        event.preventDefault();
+      }
+    }
+
+    // Add event listener to the form submit button
+    const form = document.getElementById('registration-form');
+    form.addEventListener('submit', validateForm);
+  </script>
+</body>
+</html>
